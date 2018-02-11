@@ -126,7 +126,7 @@ function SheepWhisperer_DebugPrint(str)
 	-- DEFAULT_CHAT_FRAME:AddMessage("[SheepWhisperer] "..str, 0.75, 1.0, 0.25);
 end
 
-SheepWhisperer_ChatPrint("Loaded");
 SheepWhispererFrame = CreateFrame("Frame", nil, UIParent)
 SheepWhispererFrame:RegisterEvent("UNIT_SPELLCAST_START");
 SheepWhispererFrame:SetScript("OnEvent", function (_, e, ...) SheepWhispererEvents[e](...) end)
+SheepWhisperer_ChatPrint("SheepWhisperer v" .. GetAddOnMetadata("SheepWhisperer", "version") .. " loaded");
