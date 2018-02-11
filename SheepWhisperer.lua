@@ -51,10 +51,34 @@ function SheepWhisperer_CheckOwnSheep(spell)
 	local targetName = UnitName("target");
 	
 	-- SheepWhisperer_CheckUnitTarget(spell, "player");
-	SheepWhisperer_CheckUnitTarget(spell, "party1");
-	SheepWhisperer_CheckUnitTarget(spell, "party2");
-	SheepWhisperer_CheckUnitTarget(spell, "party3");
-	SheepWhisperer_CheckUnitTarget(spell, "party4");
+
+	if (IsInGroup()) then
+		SheepWhisperer_DebugPrint("in group, checking each group member");
+		for i=1, 4, 1 do
+			local partyID = "party" .. tostring(i)
+			if (UnitExists(partyID)) then
+				SheepWhisperer_DebugPrint("checking" .. raidID);
+				SheepWhisperer_CheckUnitTarget(spell, partyID);
+			else
+				SheepWhisperer_DebugPrint("no unit " .. raidID .. ", stopping scan");
+				break
+			end
+		end
+	end
+
+	if (IsInRaid()) then
+		SheepWhisperer_DebugPrint("in raid, checking each raid member");
+		for i=1, 40, 1 do
+			local raidID = "raid" .. tostring(i)
+			if (UnitExists(raidID)) then
+				SheepWhisperer_DebugPrint("checking" .. raidID);
+				SheepWhisperer_CheckUnitTarget(spell, raidID);
+			else
+				SheepWhisperer_DebugPrint("no unit " .. raidID .. ", stopping scan");
+				break
+			end
+		end
+	end
 end
 
 function SheepWhisperer_CheckUnitTarget(spell, unit)
@@ -71,6 +95,8 @@ function SheepWhisperer_CheckUnitTarget(spell, unit)
 	if (myTarget ~= theirTarget) then
 		return
 	end
+
+	SheepWhisperer_DebugPrint("I am targetting " .. myTarget .. ", " .. unit .. " is targetting " .. theirTarget);
 
 	local targetName = UnitName(unit .. "target");
 	local unitName = UnitName(unit);
@@ -97,7 +123,7 @@ function SheepWhisperer_ErrorPrint(str)
 end
 
 function SheepWhisperer_DebugPrint(str)
-	DEFAULT_CHAT_FRAME:AddMessage("[SheepWhisperer] "..str, 0.75, 1.0, 0.25);
+	-- DEFAULT_CHAT_FRAME:AddMessage("[SheepWhisperer] "..str, 0.75, 1.0, 0.25);
 end
 
 SheepWhisperer_ChatPrint("Loaded");

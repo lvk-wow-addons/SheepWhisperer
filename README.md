@@ -17,6 +17,3 @@ Currently the addon detects the following spells:
 * Shackle Undead
 
 I assume it will only handle english clients for now.
-
-The addon will only work in normal groups, not in raids. I will consider adding
-support for this later.
