@@ -1,0 +1,7 @@
+## Interface: 70300
+## Title: SheepWhisperer
+## Notes: 
+## Author: Lasse Vågsæther KArlsen
+## Version: 0.10.0
+## DefaultState: Enabled
+SheepWhisperer.lua
