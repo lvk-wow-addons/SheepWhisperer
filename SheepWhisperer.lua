@@ -1,5 +1,13 @@
 SheepWhispererEvents = { }
 
+SheepWhisperer_Spells = {
+	-- Mage
+	["Polymorph"] = true,
+
+	-- Priest
+	["Shackle Undead"] = true,
+}
+
 function SheepWhispererEvents.UNIT_SPELLCAST_START(unitID, spell, rank, lineID, spellID)
 	if (unitID == "player") then
 		SheepWhisperer_CheckOwnSheep(spell);
@@ -12,7 +20,7 @@ function SheepWhispererEvents.UNIT_SPELLCAST_START(unitID, spell, rank, lineID, 
 end
 
 function SheepWhisperer_CheckOthersSheep(spell, unitID)
-	if (not SheepWhisperer_IsSheepSpell(spell)) then
+	if (not SheepWhisperer_Spells[spell]) then
 		return
 	end
 
@@ -43,7 +51,7 @@ function SheepWhisperer_CheckOwnSheep(spell)
 		return
 	end
 
-	if (not SheepWhisperer_IsSheepSpell(spell)) then
+	if (not SheepWhisperer_Spells[spell]) then
 		return
 	end
 
@@ -101,17 +109,6 @@ function SheepWhisperer_CheckUnitTarget(spell, unit)
 	local targetName = UnitName(unit .. "target");
 	local unitName = UnitName(unit);
 	SendChatMessage("I am casting " .. spell .. " on your target, " .. targetName .. ", please change to a different target if possible", "WHISPER", nil, unitName);
-end
-
-function SheepWhisperer_IsSheepSpell(spell)
-	if spell == "Polymorph" then
-		return true
-	end
-	if spell == "Shackle Undead" then
-		return true
-	end
-
-	return false
 end
 
 function SheepWhisperer_ChatPrint(str)
