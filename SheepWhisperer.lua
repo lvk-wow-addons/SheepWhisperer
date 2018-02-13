@@ -162,7 +162,7 @@ function SheepWhisperer_ChatPrint(str)
 end
 
 function SheepWhisperer_ErrorPrint(str)
-	DEFAULT_CHAT_FRAME:AddMessage("[GTSheepWhispererFO] "..str, 1.0, 0.5, 0.5)
+	DEFAULT_CHAT_FRAME:AddMessage("[SheepWhisperer] "..str, 1.0, 0.5, 0.5)
 end
 
 function SheepWhisperer_DebugPrint(str)
