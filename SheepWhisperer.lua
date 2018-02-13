@@ -15,9 +15,9 @@ SheepWhisperer_Spells = {
 	["Verwandlung"] = true,
 
 	-- Mage: French
-	["M\195\169tamorphose"] = true,
-	["M\195\169tamorphose: cochon"] = true,
-	["M\195\169tamorphose: Tortue"] = true,
+	["Métamorphose"] = true,
+	["Métamorphose: cochon"] = true,
+	["Métamorphose: Tortue"] = true,
 
 	-- Mage: Chinese (S)
 	["变形术"] = true,
