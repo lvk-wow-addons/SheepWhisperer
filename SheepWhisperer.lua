@@ -1,13 +1,59 @@
 SheepWhispererEvents = { }
 
 SheepWhisperer_Spells = {
-	-- Mage
+	-- Mage: English
 	["Polymorph"] = true,
 	["Polymorph: Pig"] = true,
 	["Polymorph: Turtle"] = true,
 
+	-- Mage: Russian
+	["Превращение"] = true,
+	["Превращение: свинья"] = true,
+	["Превращение: черепаха"] = true,
+
+	-- Mage: German
+	["Verwandlung"] = true,
+
+	-- Mage: French
+	["M\195\169tamorphose"] = true,
+	["M\195\169tamorphose: cochon"] = true,
+	["M\195\169tamorphose: Tortue"] = true,
+
+	-- Mage: Chinese (S)
+	["变形术"] = true,
+	["变形术：猪"] = true,
+	["变形术：龟"] = true,
+
+	-- Mage: Chinese (T)
+	["變形術"] = true,
+	["變豬術"] = true,
+	["變龜術"] = true,
+
+	-- Mage: Korean
+	["변이"] = true,
+	["변이: 돼지"] = true,
+	["변이: 거북이"] = true,
+
 	-- Priest
 	["Shackle Undead"] = true,
+
+	-- Priest: Russian
+	["Сковывание нежити"] = true,
+
+	-- Priest: German
+	["Untote fesseln"] = true,
+
+	-- Priest: French
+	["Entraves des morts-vivants"] = true,
+
+	-- Priest: Chinese (S)
+	["束缚亡灵"] = true,
+
+	-- Priest: Chinese (T)
+	["束縛不死生物"] = true,
+
+	-- Priest: Korean
+	["언데드 속박"] = true,
 }
 
 function SheepWhispererEvents.UNIT_SPELLCAST_START(unitID, spell, rank, lineID, spellID)
