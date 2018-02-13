@@ -3,6 +3,8 @@ SheepWhispererEvents = { }
 SheepWhisperer_Spells = {
 	-- Mage
 	["Polymorph"] = true,
+	["Polymorph: Pig"] = true,
+	["Polymorph: Turtle"] = true,
 
 	-- Priest
 	["Shackle Undead"] = true,
