@@ -57,10 +57,10 @@ function SheepWhisperer_CheckOwnSheep(spell)
 		for i=1, 4, 1 do
 			local partyID = "party" .. tostring(i)
 			if (UnitExists(partyID)) then
-				SheepWhisperer_DebugPrint("checking" .. raidID)
+				SheepWhisperer_DebugPrint("checking" .. partyID)
 				SheepWhisperer_CheckUnitTarget(spell, partyID)
 			else
-				SheepWhisperer_DebugPrint("no unit " .. raidID .. ", stopping scan")
+				SheepWhisperer_DebugPrint("no unit " .. partyID .. ", stopping scan")
 				break
 			end
 		end
