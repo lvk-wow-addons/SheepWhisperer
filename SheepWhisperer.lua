@@ -56,24 +56,26 @@ SheepWhisperer_Spells = {
 	["언데드 속박"] = true,
 }
 
-function SheepWhispererEvents.UNIT_SPELLCAST_START(unitID, spell, rank, lineID, spellID)
-	if (not SheepWhisperer_Spells[spell]) then
+function SheepWhispererEvents.UNIT_SPELLCAST_START(unitID, castGUID, spellID)
+    local spellName = GetSpellInfo(spellID)
+
+    if (not SheepWhisperer_Spells[spellName]) then
 		return
 	end
 
-	SheepWhisperer_DebugPrint("Detected matching spell, " .. spell)
+    SheepWhisperer_DebugPrint("Detected matching spellName, " .. spspellNameell)
 
 	if (unitID == "player") then
-		SheepWhisperer_CheckOwnSheep(spell)
+		SheepWhisperer_CheckOwnSheep(spellName)
 		return
 	end
 
 	if (unitID == "party1" or unitID == "party2" or unitID == "party3" or unitID == "party4") then
-		SheepWhisperer_CheckOthersSheep(spell, unitID)
-	end
+		SheepWhisperer_CheckOthersSheep(spellName, unitID)
+    end
 end
 
-function SheepWhisperer_CheckOthersSheep(spell, unitID)
+function SheepWhisperer_CheckOthersSheep(spellName, unitID)
 	if (not UnitExists("target")) then
 		return
 	end
@@ -93,10 +95,10 @@ function SheepWhisperer_CheckOthersSheep(spell, unitID)
 	local targetName = UnitName("target")
 
 	local unitName = UnitName(unitID)
-	UIErrorsFrame:AddMessage("Switch target, " .. spell .. " is being cast by " .. unitName, 1.0, 0.5, 0.0, 3)
+	UIErrorsFrame:AddMessage("Switch target, " .. spellName .. " is being cast by " .. unitName, 1.0, 0.5, 0.0, 3)
 end
 
-function SheepWhisperer_CheckOwnSheep(spell)
+function SheepWhisperer_CheckOwnSheep(spellName)
 	if (not UnitExists("target")) then
 		return
 	end
@@ -104,15 +106,15 @@ function SheepWhisperer_CheckOwnSheep(spell)
 	local target = UnitGUID("target")
 	local targetName = UnitName("target")
 	
-	-- SheepWhisperer_CheckUnitTarget(spell, "player")
+	-- SheepWhisperer_CheckUnitTarget(spellName, "player")
 
 	if (IsInGroup()) then
 		SheepWhisperer_DebugPrint("in group, checking each group member")
 		for i=1, 4, 1 do
-			local partyID = "party" .. tostring(i)
+            local partyID = "party" .. tostring(i)
 			if (UnitExists(partyID)) then
-				SheepWhisperer_DebugPrint("checking" .. partyID)
-				SheepWhisperer_CheckUnitTarget(spell, partyID)
+				SheepWhisperer_DebugPrint("checking " .. partyID)
+				SheepWhisperer_CheckUnitTarget(spellName, partyID)
 			else
 				SheepWhisperer_DebugPrint("no unit " .. partyID .. ", stopping scan")
 				break
@@ -126,7 +128,7 @@ function SheepWhisperer_CheckOwnSheep(spell)
 			local raidID = "raid" .. tostring(i)
 			if (UnitExists(raidID)) then
 				SheepWhisperer_DebugPrint("checking" .. raidID)
-				SheepWhisperer_CheckUnitTarget(spell, raidID)
+				SheepWhisperer_CheckUnitTarget(spellName, raidID)
 			else
 				SheepWhisperer_DebugPrint("no unit " .. raidID .. ", stopping scan")
 				break
@@ -166,7 +168,7 @@ function SheepWhisperer_ErrorPrint(str)
 end
 
 function SheepWhisperer_DebugPrint(str)
-	-- DEFAULT_CHAT_FRAME:AddMessage("[SheepWhisperer] "..str, 0.75, 1.0, 0.25)
+	DEFAULT_CHAT_FRAME:AddMessage("[SheepWhisperer] "..str, 0.75, 1.0, 0.25)
 end
 
 SheepWhispererFrame = CreateFrame("Frame", nil, UIParent)
