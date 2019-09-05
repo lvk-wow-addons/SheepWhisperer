@@ -174,4 +174,5 @@ end
 SheepWhispererFrame = CreateFrame("Frame", nil, UIParent)
 SheepWhispererFrame:RegisterEvent("UNIT_SPELLCAST_START")
 SheepWhispererFrame:SetScript("OnEvent", function (_, e, ...) SheepWhispererEvents[e](...) end)
-SheepWhisperer_ChatPrint("SheepWhisperer v" .. GetAddOnMetadata("SheepWhisperer", "version") .. " loaded")
+
+LVK:AnnounceAddon("SheepWhisperer")
