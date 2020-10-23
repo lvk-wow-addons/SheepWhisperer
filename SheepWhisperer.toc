@@ -1,4 +1,4 @@
-## Interface: 11302
+## Interface: 90001
 ## Title: SheepWhisperer
 ## Notes: 
 ## Author: Lasse Vågsæther Karlsen

@@ -63,7 +63,7 @@ function SheepWhispererEvents.UNIT_SPELLCAST_START(unitID, castGUID, spellID)
 		return
 	end
 
-    SheepWhisperer_DebugPrint("Detected matching spellName, " .. spspellNameell)
+    LVK:Debug("Detected matching spellName, " .. spellName)
 
 	if (unitID == "player") then
 		SheepWhisperer_CheckOwnSheep(spellName)
@@ -109,32 +109,34 @@ function SheepWhisperer_CheckOwnSheep(spellName)
 	-- SheepWhisperer_CheckUnitTarget(spellName, "player")
 
 	if (IsInGroup()) then
-		SheepWhisperer_DebugPrint("in group, checking each group member")
+		LVK:Debug("in group, checking each group member")
 		for i=1, 4, 1 do
             local partyID = "party" .. tostring(i)
 			if (UnitExists(partyID)) then
-				SheepWhisperer_DebugPrint("checking " .. partyID)
+				LVK:Debug("checking " .. partyID)
 				SheepWhisperer_CheckUnitTarget(spellName, partyID)
 			else
-				SheepWhisperer_DebugPrint("no unit " .. partyID .. ", stopping scan")
+				LVK:Debug("no unit " .. partyID .. ", stopping scan")
 				break
 			end
 		end
 	end
 
 	if (IsInRaid()) then
-		SheepWhisperer_DebugPrint("in raid, checking each raid member")
+		LVK:Debug("in raid, checking each raid member")
 		for i=1, 40, 1 do
 			local raidID = "raid" .. tostring(i)
 			if (UnitExists(raidID)) then
-				SheepWhisperer_DebugPrint("checking" .. raidID)
+				LVK:Debug("checking" .. raidID)
 				SheepWhisperer_CheckUnitTarget(spellName, raidID)
 			else
-				SheepWhisperer_DebugPrint("no unit " .. raidID .. ", stopping scan")
+				LVK:Debug("no unit " .. raidID .. ", stopping scan")
 				break
 			end
 		end
-	end
+    end
+    
+    -- SheepWhisperer_CheckUnitTarget(spellName, "player")
 end
 
 function SheepWhisperer_CheckUnitTarget(spell, unit)
@@ -152,27 +154,15 @@ function SheepWhisperer_CheckUnitTarget(spell, unit)
 		return
 	end
 
-	SheepWhisperer_DebugPrint("I am targetting " .. myTarget .. ", " .. unit .. " is targetting " .. theirTarget)
+	LVK:Debug("I am targetting " .. myTarget .. ", " .. unit .. " is targetting " .. theirTarget)
 
 	local targetName = UnitName(unit .. "target")
 	local unitName = UnitName(unit)
 	SendChatMessage("I am casting " .. spell .. " on your target, " .. targetName .. ", please change to a different target if possible", "WHISPER", nil, unitName)
 end
 
-function SheepWhisperer_ChatPrint(str)
-	DEFAULT_CHAT_FRAME:AddMessage("[SheepWhisperer] "..str, 0.25, 1.0, 0.25)
-end
-
-function SheepWhisperer_ErrorPrint(str)
-	DEFAULT_CHAT_FRAME:AddMessage("[SheepWhisperer] "..str, 1.0, 0.5, 0.5)
-end
-
-function SheepWhisperer_DebugPrint(str)
-	DEFAULT_CHAT_FRAME:AddMessage("[SheepWhisperer] "..str, 0.75, 1.0, 0.25)
-end
-
 SheepWhispererFrame = CreateFrame("Frame", nil, UIParent)
 SheepWhispererFrame:RegisterEvent("UNIT_SPELLCAST_START")
 SheepWhispererFrame:SetScript("OnEvent", function (_, e, ...) SheepWhispererEvents[e](...) end)
 
-LVK:AnnounceAddon("SheepWhisperer")
+LVK:AnnounceAddon("SheepWhisperer");
