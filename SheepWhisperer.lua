@@ -1,67 +1,30 @@
 SheepWhispererEvents = { }
 
 SheepWhisperer_Spells = {
-	-- Mage: English
-	["Polymorph"] = true,
-	["Polymorph: Pig"] = true,
-	["Polymorph: Turtle"] = true,
+    -- Mage
+    [118] = "Polymorph: Sheep",
+    [161353] = "Polymorph: Polar Bear Cub",
+    [28271] = "Polymorph: Turtle",
+    [161354] = "Polymorph: Monkey",
+    [161355] = "Polymorph: Penguin",
+    [61305] = "Polymorph: Black Cat",
+    [126819] = "Polymorph: Porcupine",
+    [161372] = "Polymorph: Peacock",
+    [28272] = "Polymorph: Pig",
+    [61780] = "Polymorph: Turkey",
+    [277792] = "Polymorph: Bumblebee",
 
-	-- Mage: Russian
-	["Превращение"] = true,
-	["Превращение: свинья"] = true,
-	["Превращение: черепаха"] = true,
-
-	-- Mage: German
-	["Verwandlung"] = true,
-
-	-- Mage: French
-	["Métamorphose"] = true,
-	["Métamorphose: cochon"] = true,
-	["Métamorphose: Tortue"] = true,
-
-	-- Mage: Chinese (S)
-	["变形术"] = true,
-	["变形术：猪"] = true,
-	["变形术：龟"] = true,
-
-	-- Mage: Chinese (T)
-	["變形術"] = true,
-	["變豬術"] = true,
-	["變龜術"] = true,
-
-	-- Mage: Korean
-	["변이"] = true,
-	["변이: 돼지"] = true,
-	["변이: 거북이"] = true,
-
-	-- Priest
-	["Shackle Undead"] = true,
-
-	-- Priest: Russian
-	["Сковывание нежити"] = true,
-
-	-- Priest: German
-	["Untote fesseln"] = true,
-
-	-- Priest: French
-	["Entraves des morts-vivants"] = true,
-
-	-- Priest: Chinese (S)
-	["束缚亡灵"] = true,
-
-	-- Priest: Chinese (T)
-	["束縛不死生物"] = true,
-
-	-- Priest: Korean
-	["언데드 속박"] = true,
+    -- Priest
+    [9484] = "Shackle Undead",
+    [11444] = "Shackle Undead",
+    [40135] = "Shackle Undead"
 }
 
 function SheepWhispererEvents.UNIT_SPELLCAST_START(unitID, castGUID, spellID)
-    local spellName = GetSpellInfo(spellID)
-
-    if (not SheepWhisperer_Spells[spellName]) then
-		return
-	end
+    local spellName = SheepWhisperer_Spells[spellID]
+    if not spellName then
+        return
+    end
 
     LVK:Debug("Detected matching spellName, " .. spellName)
 
