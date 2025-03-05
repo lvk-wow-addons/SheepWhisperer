@@ -1,8 +1,8 @@
-## Interface: 90001
+## Interface: 110100
 ## Title: SheepWhisperer
 ## Notes: 
 ## Author: Lasse Vågsæther Karlsen
-## Version: 0.10.0
+## Version: 11.1.0
 ## DefaultState: Enabled
 ## RequiredDeps: LVK
 SheepWhisperer.lua
